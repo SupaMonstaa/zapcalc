@@ -1,0 +1,9 @@
+<div class="keyboard-item">
+  <table>
+    <tr v-for="numbers in tens">
+      <td v-for="nb in numbers">
+        <KeyboardKey v-on:change="onKeyboardPressed" v-bind:value="nb"></KeyboardKey>
+      </td>
+    </tr>
+  </table>
+</div>

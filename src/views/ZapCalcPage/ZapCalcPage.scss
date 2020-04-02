@@ -1,0 +1,28 @@
+header {
+  height: 10vh;
+  menu {
+    margin: 0;
+    padding: 1vh;
+    box-sizing:border-box;
+    height:100%;
+  }
+  .level-select {
+    display:block;
+    float:left;
+    width: 40%;
+    height:100%;
+  }
+  .operation-select {
+    display:block;
+    float:left;
+    width:30%;
+  }
+}
+
+.calc-screen {
+  height:20vh;
+}
+
+.keyboard-item {
+  height: 70vh;
+}
