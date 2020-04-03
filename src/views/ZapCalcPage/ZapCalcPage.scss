@@ -1,5 +1,14 @@
+.zap-calc {
+  border-radius: 1vh;
+  margin: 0 auto;
+  max-width:80vh;
+  padding:2vh;
+  box-sizing:border-box;
+  box-shadow: 0 1vh 0 0 #444444;
+  background-color: #555555;
+}
 header {
-  height: 10vh;
+  height: 8vh;
   menu {
     margin: 0;
     padding: 1vh;
@@ -16,13 +25,14 @@ header {
     display:block;
     float:left;
     width:30%;
+    height:100%;
   }
 }
 
 .calc-screen {
-  height:20vh;
+  height:18vh;
 }
 
 .keyboard-item {
-  height: 70vh;
+  height: 64vh;
 }

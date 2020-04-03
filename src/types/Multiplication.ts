@@ -1,7 +1,7 @@
 import Operation from './Operation';
 
 export default class Multiplication extends Operation {
-  public sign = 'X';
+  public sign = '×';
 
   protected generateDigits(level: number): void {
     this.digit1 = Operation.rand(level, 4 + 2 * level);

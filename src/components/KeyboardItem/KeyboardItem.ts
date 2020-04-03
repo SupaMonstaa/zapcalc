@@ -1,4 +1,4 @@
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import KeyboardKey from '@/components/KeyboardKey';
 import WithRender from './KeyboardItem.html';
 import './KeyboardItem.scss';
@@ -10,6 +10,9 @@ import './KeyboardItem.scss';
   },
 })
 export default class KeyboardItem extends Vue {
+  @Prop({ type: Number })
+  private result!: number;
+
   public tens: number[][] = [];
 
   created(): void {
