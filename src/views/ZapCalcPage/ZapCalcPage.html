@@ -5,6 +5,7 @@
       <OperationSelect initValue="multiplication" class="operation-select" @change="onOperationChange"></OperationSelect>
     </menu>
   </header>
+  <div class="star"><img src="/icons/star.png" alt=""></div>
   <CalcScreen :operation="operationStr" class="calc-screen"></CalcScreen>
   <KeyboardItem :result="operation.result" @change="onKeyboardValue" class="keyboard-item"></KeyboardItem>
 </div>

@@ -1,31 +1,40 @@
+$calc-bg: #555555;
 .zap-calc {
   border-radius: 1vh;
   margin: 0 auto;
   max-width:80vh;
   padding:2vh;
   box-sizing:border-box;
-  box-shadow: 0 1vh 0 0 #444444;
-  background-color: #555555;
+  background-color: $calc-bg;
+  box-shadow: 0 1vh 0 0 darken($calc-bg, 40),
+    0 1vh 0 0 lighten($calc-bg, 30) inset,// top
+    0 -1vh 0 0 darken($calc-bg, 10) inset,// bottom
+    1vh 0 0 0 lighten($calc-bg, 20) inset,// left
+    -1vh 0 0 0 lighten($calc-bg, 10) inset;// right
 }
 header {
   height: 8vh;
   menu {
     margin: 0;
-    padding: 1vh;
+    padding: 0;
     box-sizing:border-box;
     height:100%;
   }
   .level-select {
     display:block;
+    box-sizing:border-box;
     float:left;
     width: 40%;
-    height:100%;
+    height:95%;
+    padding: 2% 1vh 0 1vh;
   }
   .operation-select {
     display:block;
+    box-sizing:border-box;
     float:left;
-    width:30%;
-    height:100%;
+    width:40%;
+    height:95%;
+    padding: 2% 1vh 0 1vh;
   }
 }
 
@@ -34,5 +43,5 @@ header {
 }
 
 .keyboard-item {
-  height: 64vh;
+  height: 61vh;
 }

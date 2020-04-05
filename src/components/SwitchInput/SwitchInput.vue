@@ -1,16 +1,15 @@
 <template>
-  <div class="switch-container">
-    <div class="switch">
-      <template v-for="(input, index) in switchData">
-        <input :name="id" :key="id + '-input-' + index" :id="id + '-' + index" type="radio"
-        @change="onChange" v-model="value" :value="input.value"/>
-        <label :key="id + '-label-' + index" :for="id + '-' + index" class="switch__label">
-          <slot v-if="!input.label" :name="'label' + index"></slot>
-          <span v-html="input.label"></span>
-        </label>
-      </template>
-      <div ref="indicator" class="switch__indicator"><div class="switch__cursor"></div></div>
+  <div class="switch">
+    <input @change="onChange" v-model="cursorIndex" type="range" :id="id" :name="id"
+         min="0" :max="switchData.length - 1" />
+    <div class="labels">
+      <div v-for="(input, index) in switchData"
+        :key="id + '-label-' + index" :for="id + '-' + index" class="label">
+        <slot v-if="!input.label" :name="'label' + index"></slot>
+        <span v-html="input.label"></span>
+      </div>
     </div>
+    <!-- <div ref="indicator" class="switch__indicator"></div> -->
   </div>
 </template>
 
@@ -32,17 +31,14 @@ export default class SwitchInput extends Vue {
 
   private static componentId = 0;
 
+  private cursorIndex!: number;
+
   created() {
     this.value = `${this.initValue}`;
     // increment id to create unique component Id
     SwitchInput.componentId += 1;
     this.id = `switch-input-${SwitchInput.componentId}`;
-  }
-
-  mounted() {
     // adjust cursor width to the number of inputs
-    const indicator = this.$refs.indicator as HTMLElement;
-    indicator.style.width = `${Math.floor(1000 / this.switchData.length) / 10}%`;
     let i: number;
     console.log(this.initValue, this.switchData);
     for (i = 0; i < this.switchData.length; i += 1) {
@@ -50,85 +46,217 @@ export default class SwitchInput extends Vue {
         break;
       }
     }
-    this.moveIndicator(i);
+    this.cursorIndex = i;
   }
 
-  onChange(evt: Event): void {
-    const input = evt.target as HTMLInputElement;
-    const inputIndex = parseInt(input.id.replace(`${this.id}-`, ''), 0);
-    this.moveIndicator(inputIndex);
+  mounted() {
+    this.moveIndicator(this.cursorIndex);
+  }
+
+  onChange(): void {
+    /* const input = evt.target as HTMLInputElement;
+    const inputIndex = parseInt(input.id.replace(`${this.id}-`, ''), 0); */
+    this.moveIndicator(this.cursorIndex);
   }
 
   /**
    * move the indicator to the label of the given input
    */
-  moveIndicator(inputIndex: number): void {
-    const indicator = this.$refs.indicator as HTMLElement;
-    indicator.style.transform = `translate3d(${inputIndex}00%,0,0)`;
-    this.$emit('change', this.value);
+  moveIndicator(cursorIndex: number): void {
+    this.cursorIndex = cursorIndex;
+    // const indicator = this.$refs.indicator as HTMLElement;
+    // const percentX = Math.round(1000 * (cursorIndex / this.switchData.length)) / 10;
+    // console.log('percent', percentX);
+    // indicator.style.transform = `translate3d(${percentX},0,0)`;
+    this.$emit('change', this.switchData[cursorIndex].value);
   }
 }
 </script>
 
 <style lang="scss" scoped>
-$switch-bg: rgb(167, 166, 166);
-.switch-container {
-  padding: 1vh;
-  height:100%;
+$switch-bg: rgb(61, 55, 47);
+$cursor-color: orange;
+
+@mixin thumb {
+  height:4.5vh;
+  width: 2vh;
+  margin:-2.25vh 0 0 0;
+  border-radius: 2px;
+  background-color: $cursor-color;
   box-sizing:border-box;
-  border-radius: 30px;
-  background: $switch-bg;
-  overflow:hidden;
-  box-shadow: 0px -3px 0 0 darken($switch-bg, 30);
+  border-top: 1vh solid lighten($cursor-color, 30);
+  border-left: 1vh solid lighten($cursor-color, 10);
+  border-bottom: 1vh solid darken($cursor-color, 10);
+  border-right: 1vh solid $cursor-color;
+  box-shadow: 0 1vh 0 0 #444444;
+  cursor: pointer;
 }
+
+@mixin track {
+  top: 1vh;
+  content: ' ';
+  width: 100%;
+  height: 1vh;
+  padding: 0.25vh 0;
+  box-sizing:border-box;
+  border: 1vh solid $switch-bg;
+  border-radius: 1vh;
+  background-color: darken($switch-bg, 50);
+  cursor: pointer;
+  animation: 0.2s;
+}
+
+@mixin input-type-range {
+  padding-top: 0.5vh;
+  margin: 0;
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    @include track;
+    /*@include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius;
+    background: $track-color;*/
+  }
+
+  &::-webkit-slider-thumb {
+    @include thumb;
+    -webkit-appearance: none;
+  }
+
+  /*&:focus::-webkit-slider-runnable-track {
+    background: $track-color;
+  }*/
+
+  &::-moz-range-track {
+    @include track;
+    /*@include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius;
+    background: $track-color;*/
+  }
+
+  &::-moz-range-thumb {
+    @include thumb;
+  }
+
+  &::-ms-track {
+    @include track;
+    /*color: transparent;
+    border-width: $thumb-width 0;
+    border-color: transparent;
+    background: transparent;*/
+  }
+
+  &::-ms-fill-lower {
+    /*@include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius * 2;
+    background: $track-color;*/
+  }
+
+  &::-ms-fill-upper {
+    /*@include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
+    border: $track-border-width solid $track-border-color;
+    border-radius: $track-radius * 2;
+    background: $track-color;*/
+  }
+
+  &::-ms-thumb {
+    @include thumb;
+  }
+/*
+  &:focus::-ms-fill-lower {
+    background: $track-color;
+  }
+
+  &:focus::-ms-fill-upper {
+    background: $track-color;
+  }*/
+}
+
 .switch {
-  display: flex;
   position:relative;
-  align-items: center;
   width: 100%;
   height:100%;
   padding: 0;
-
-  &__label {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 2px;
-    text-align: center;
-    cursor: pointer;
-    transition: color 200ms ease-out;
-    line-height:1;
-    color: #ffffff;
-    & svg {
-      max-width: 70px;
-    }
-  }
-  &__indicator {
-    width: 33.33%;
-    height: 180%;
+  /*input {
+    position:relative;
+    top:0;
+    padding: 0;
+    width:100%;
+    margin: 20px 0 0 0;
+  }*/
+  /*-moz-animation-timing-function: ;&::before {
     position: absolute;
-    z-index:10;
-    left: 0;
-    top: -40%;
-    &:after {
-      height:100%;
-      box-sizing:border-box;
-      border-left: 2vh solid transparent;
-      border-right: 2vh solid transparent;
-      border-top: 2vh solid orange;
-      border-bottom: 2vh solid orange;
-      position: absolute;
-      left: calc(50% - 2vh);
-      content:' ';
+    top: 1vh;
+    content: ' ';
+    width: 100%;
+    padding: 0.25vh 0;
+    box-sizing:border-box;
+    border: 1vh solid $switch-bg;
+    border-radius: 1vh;
+    background-color: darken($switch-bg, 50);
+  }*/
+/*
+  &__indicator {
+    border-radius: 2px;
+    height:4.5vh;
+    width: 2vh;
+    background-color: $cursor-color;
+    box-sizing:border-box;
+    border-top: 1vh solid lighten($cursor-color, 30);
+    border-left: 1vh solid lighten($cursor-color, 10);
+    border-bottom: 1vh solid darken($cursor-color, 10);
+    border-right: 1vh solid $cursor-color;
+    position: absolute;
+    left: -1vh;
+    box-shadow: 0 1vh 0 0 #444444;
+  }*/
+  .labels {
+    display: flex;
+    resize: horizontal;
+    align-items: center;
+    .label {
+      display: auto;
+      position:relative;
+      top: 40%;
+      z-index:1;
+      width: 100%;
+      //height: 50%;
+      box-sizing: border-box;
+      // padding: 50% 0 0 0;
+      text-align: center;
+      cursor: pointer;
+      transition: color 200ms ease-out;
+      line-height:1;
+      color: #ffffff;
+      & svg {
+        max-width: 60px;
+      }
     }
-    transition: transform 600ms cubic-bezier(.02,.94,.09,.97),
-                background 300ms cubic-bezier(.17,.67,.14,1.03);
-    transform: translate3d(0,0,0);
   }
-  input[type="radio"] {
-    &:not(:checked),
-    &:checked {
-      display: none;
-    }
+
+  input[type=range] {
+    @include input-type-range;
   }
 }
+/*
+input[type="range"] {
+  position:relative;
+  z-index:10;
+  //-webkit-appearance: none;
+  width: 100%;
+  //background: transparent;
+  &:focus {
+    outline: none;
+  }
+}*/
+
 </style>
