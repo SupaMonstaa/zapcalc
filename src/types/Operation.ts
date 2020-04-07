@@ -1,9 +1,13 @@
 export default abstract class Operation {
-  protected digit1 = 0;
+  public digit1 = 0;
 
-  protected digit2 = 0;
+  public digit2 = 0;
 
-  protected abstract sign = '+';
+  public abstract sign: string;
+
+  public abstract color: string;
+
+  public stars = 1;
 
   constructor(level: number) {
     this.generateDigits(level);

@@ -1,5 +1,5 @@
 <template>
-  <button :class="correct ? 'correct' : 'wrong'" @click="onClick">{{ value }}</button>
+  <button :class="buttonClass" @click="onClick">{{ value }}</button>
 </template>
 
 <script lang="ts">
@@ -11,6 +11,13 @@ export default class KeyboardKey extends Vue {
 
   @Prop({ required: true })
   public correct!: boolean;
+
+  @Prop({ type: Boolean })
+  private showResult!: boolean;
+
+  get buttonClass() {
+    return `${this.correct ? 'correct' : 'wrong'}${this.showResult ? ' show' : ''}`;
+  }
 
   created() {
     console.log(this.correct);
@@ -31,47 +38,30 @@ export default class KeyboardKey extends Vue {
 </script>
 
 <style scoped lang="scss">
+@import '@/scss/mixins.scss';
 
 $button-color: rgb(48, 138, 241);
 $button-correct: rgb(102, 187, 69);
 $button-wrong: rgb(230, 71, 71);
 button {
-  width:100%;
-  height:100%;
-  border:none;
-  padding: 0;
-  color:#ffffff;
-  font-weight: bold;
-  background-color:$button-color;
-  box-sizing: border-box;
-  border-radius:0.8vh;
-  box-shadow: 0 4px 0 0 darken($button-color, 20);
-  font-size: 2.2vh;
-  -webkit-transition: 100ms linear;
-  -ms-transition: 100ms linear;
-  transition: 100ms linear;
-
+  @include zap-button($button-color);
   &.even {
     background-color:lighten($button-color, 15);
   }
-
-  &:hover {
-    background-color: lighten($button-color, 10);
+  &.correct.show {
+    background-color: $button-correct;
+  }
+  &.wrong.show {
+    background-color: $button-wrong;
   }
 
-  &:active, &.active {
+  &.correct:active, &.correct.active {
     background-color: $button-correct;
     box-shadow: 0 1px 0 0 darken($button-correct, 20);
-    transform: translateY(3px);
   }
-
   &.wrong:active, &.wrong.active {
     background-color: $button-wrong;
     box-shadow: 0 1px 0 0 darken($button-wrong, 20);
-  }
-
-  &:focus {
-    outline:0;
   }
 }
 </style>

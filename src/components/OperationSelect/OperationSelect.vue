@@ -48,10 +48,10 @@ export default class OperationSelect extends Vue {
 
 <style lang="scss" scoped>
   /* change style of inner elements */
-  /deep/ .switch__label span {
+  /deep/ .label span {
     font-size:220%;
   }
-  /deep/ .switch__label:last-of-type span {
+  /deep/ .label:last-of-type span {
     font-size:120%;
     line-height: 0.8;
   }

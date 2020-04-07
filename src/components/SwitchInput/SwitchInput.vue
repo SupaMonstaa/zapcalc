@@ -119,10 +119,6 @@ $cursor-color: orange;
 
   &::-webkit-slider-runnable-track {
     @include track;
-    /*@include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
-    border: $track-border-width solid $track-border-color;
-    border-radius: $track-radius;
-    background: $track-color;*/
   }
 
   &::-webkit-slider-thumb {
@@ -130,16 +126,8 @@ $cursor-color: orange;
     -webkit-appearance: none;
   }
 
-  /*&:focus::-webkit-slider-runnable-track {
-    background: $track-color;
-  }*/
-
   &::-moz-range-track {
     @include track;
-    /*@include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
-    border: $track-border-width solid $track-border-color;
-    border-radius: $track-radius;
-    background: $track-color;*/
   }
 
   &::-moz-range-thumb {

@@ -2,7 +2,7 @@
   <table>
     <tr v-for="(numbers, index) in tens">
       <td v-for="nb in numbers">
-        <KeyboardKey :class="index % 2 ? 'odd' : 'even'" v-on:change="onKeyboardPressed" :value="nb" :correct="result === nb"></KeyboardKey>
+        <KeyboardKey :showResult="showResult" :class="index % 2 ? 'odd' : 'even'" v-on:change="onKeyboardPressed" :value="nb" :correct="result === nb"></KeyboardKey>
       </td>
     </tr>
   </table>

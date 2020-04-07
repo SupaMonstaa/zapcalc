@@ -22,18 +22,32 @@ import './ZapCalcPage.scss';
   },
 })
 export default class ZapCalcPage extends Vue {
-  private level = 1;
+  private level = 2;
+
+  private showResult = false;
 
   private operationKind: OperationKind = OperationKind.multiplication;
 
   private operation!: Operation;
 
-  public operationStr = '';
+  private totalScore = -1;
 
   private nextOperation = true;
 
+  private gameStarted = false;
+
+  private gameDuration = 10;
+
+  private ariaLabel = '';
+
+  private score = -1;
+
+  private gameTimeLeft = -1;
+
+  private gameTimeout!: number;
+
   created() {
-    this.currentOperation = new Addition(1);
+    this.currentOperation = this.operationFactory();
     console.log('created');
   }
 
@@ -41,26 +55,58 @@ export default class ZapCalcPage extends Vue {
     if (this.operation.result === value) {
       // correct answer
       this.nextOperation = true;
-    } else if (!this.nextOperation) {
-      // TODO : 2eme faute
-      this.nextOperation = true;
-      console.log('bravo');
+      if (this.gameStarted) {
+        this.score += this.operation.stars;
+      }
     } else {
-      this.nextOperation = false;
-      console.log('Eème essai');
+      const zapCalc = this.$el as HTMLElement;
+      zapCalc.classList.add('shake');
+      setTimeout(() => {
+        zapCalc.classList.remove('shake');
+      }, 1000);
+      if (!this.nextOperation) {
+        this.showResult = true;
+      } else {
+        this.nextOperation = false;
+      }
     }
     if (this.nextOperation) {
+      this.showResult = false;
       this.currentOperation = this.operationFactory();
     }
   }
 
-  public get currentOperation(): Operation {
+  private get currentOperation(): Operation {
     return this.operation;
   }
 
-  public set currentOperation(v: Operation) {
+  private set currentOperation(v: Operation) {
     this.operation = v;
-    this.operationStr = v.toString();
+    this.ariaLabel = `${this.operation.digit1} ${this.operation.sign} ${this.operation.digit2}`;
+  }
+
+  private startGame(): void {
+    this.score = 0;
+    this.totalScore = -1;
+    this.gameStarted = true;
+    this.gameTimeLeft = this.gameDuration;
+    clearTimeout(this.gameTimeout);
+    this.gameTimeout = setTimeout(this.gameTick, 1000);
+  }
+
+  private gameTick(): void {
+    this.gameTimeLeft -= 1;
+    if (this.gameTimeLeft === 0) {
+      this.endGame();
+    } else {
+      this.gameTimeout = setTimeout(this.gameTick, 1000);
+    }
+  }
+
+  private endGame() {
+    this.gameStarted = false;
+    // send totalScore to screen
+    this.totalScore = this.score;
   }
 
   onLevelChange(level: number) {
@@ -69,7 +115,6 @@ export default class ZapCalcPage extends Vue {
 
   onOperationChange(operationKind: OperationKind) {
     this.operationKind = operationKind;
-    console.log(operationKind);
   }
 
   operationFactory(): Operation {

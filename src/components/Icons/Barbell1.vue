@@ -7,3 +7,10 @@
     <rect id="svg_5" height="10" width="10" y="70" x="230"/>
   </g>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component
+export default class Barbell1 extends Vue {}
+</script>

@@ -9,3 +9,10 @@
     <rect ry="10" rx="10" x="195" y="25" width="20" height="100" id="svg_7"/>
   </g>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component
+export default class Barbell2 extends Vue {}
+</script>

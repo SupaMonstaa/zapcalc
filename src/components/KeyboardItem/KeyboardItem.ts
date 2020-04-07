@@ -13,6 +13,9 @@ export default class KeyboardItem extends Vue {
   @Prop({ type: Number })
   private result!: number;
 
+  @Prop({ required: true, type: Boolean })
+  private showResult!: boolean;
+
   public tens: number[][] = [];
 
   created(): void {
