@@ -103,17 +103,19 @@ export default class CalcScreen extends Vue {
   }
 
   drawTotalScore(big: boolean): void {
-    const score = `${this.totalScore}`;
-    const lg = 12 * score.length;
-    this.clearScreen();
-    this.drawText(score, 39 - 0.5 * lg, 2, true, '#000000');
-    if (big) {
-      this.drawImage(this.starImage19, 42 + 0.5 * lg, 2);
-    } else {
-      this.drawImage(this.starImage9, 45 + 0.5 * lg, 6);
+    if (this.totalScore >= 0) {
+      const score = `${this.totalScore}`;
+      const lg = 12 * score.length;
+      this.clearScreen();
+      this.drawText(score, 39 - 0.5 * lg, 2, true, '#000000');
+      if (big) {
+        this.drawImage(this.starImage19, 42 + 0.5 * lg, 2);
+      } else {
+        this.drawImage(this.starImage9, 45 + 0.5 * lg, 6);
+      }
+      this.pixelate();
+      this.animTimeout = setTimeout(() => this.drawTotalScore(!big), 400);
     }
-    this.pixelate();
-    this.animTimeout = setTimeout(() => this.drawTotalScore(!big), 400);
   }
 
   drawScore() {
