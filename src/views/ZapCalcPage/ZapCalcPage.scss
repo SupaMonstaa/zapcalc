@@ -37,7 +37,7 @@ $calc-bg: #555555;
   }
 }
 header {
-  height: 8vh;
+  height: 10vh;
   menu {
     margin: 0;
     padding: 0;
@@ -71,9 +71,10 @@ header {
 }
 
 .calc-screen {
-  height:19vh;
+  margin-bottom: 1vh;
+  height: 18vh;
 }
 
 .keyboard-item {
-  height: 61vh;
+  height: 60vh;
 }

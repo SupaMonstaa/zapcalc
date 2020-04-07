@@ -67,10 +67,10 @@ export default function pixelate(src: any, dst: any, opt: any) {
             if (y < ySize) {
               const i = (xSize * y + x) * 4;
               if (!grid || (x !== xBinStart && y !== yBinStart)) {
-                // dstPixels[i + 0] = red;
-                // dstPixels[i + 1] = green;
-                // dstPixels[i + 2] = blue;
-                // dstPixels[i + 3] = alpha;
+                dstPixels[i + 0] = red;
+                dstPixels[i + 1] = green;
+                dstPixels[i + 2] = blue;
+                dstPixels[i + 3] = alpha;
               } else {
                 dstPixels[i + 0] = 255;
                 dstPixels[i + 1] = 255;

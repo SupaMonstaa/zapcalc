@@ -3,7 +3,7 @@ import Operation from './Operation';
 export default class Substraction extends Operation {
   public sign = '-';
 
-  public color = '#ff0000';
+  public color = '#800060';
 
   protected generateDigits(level: number): void {
     this.digit1 = Operation.rand(10 * level, 20 * level);
