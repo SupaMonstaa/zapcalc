@@ -21,7 +21,7 @@ export default class KeyboardItem extends Vue {
   created(): void {
     for (let i = 0; i <= 9; i += 1) {
       const ten: number[] = [];
-      for (let j = 1; j <= 10; j += 1) {
+      for (let j = 0; j <= 9; j += 1) {
         ten.push(10 * i + j);
       }
       this.tens.push(ten);

@@ -36,7 +36,7 @@ export default class ZapCalcPage extends Vue {
 
   private gameStarted = false;
 
-  private gameDuration = 10;
+  private gameDuration = 100;
 
   private ariaLabel = '';
 
