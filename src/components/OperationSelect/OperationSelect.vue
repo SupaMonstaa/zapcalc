@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SwitchInput @change="onChange" :switchData="switchData" :initValue="initValue.toString()"/>
+    <SwitchInput @change="onChange" :switchData="switchData" :initValue="initValue"/>
   </div>
 </template>
 
@@ -48,10 +48,10 @@ export default class OperationSelect extends Vue {
 <style lang="scss" scoped>
   /* change style of inner elements */
   /deep/ .label span {
-    font-size:220%;
+    font-size:160%;
   }
   /deep/ .label:last-of-type span {
-    font-size:120%;
-    line-height: 0.8;
+    font-size:80%;
+    line-height: 0.7;
   }
 </style>

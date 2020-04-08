@@ -95,21 +95,20 @@ $cursor-color: orange;
 }
 
 @mixin track {
-  top: 1vh;
   content: ' ';
   width: 100%;
-  height: 1vh;
-  padding: 0.25vh 0;
+  height: 3px;
+  padding: 1% 0;
   box-sizing:border-box;
-  border: 1vh solid $switch-bg;
-  border-radius: 1vh;
+  border: 8px solid $switch-bg;
+  border-radius: 10px;
   background-color: darken($switch-bg, 50);
   cursor: pointer;
   animation: 0.2s;
 }
 
 @mixin input-type-range {
-  padding: 1vh 0;
+  padding: 4% 0 2% 0;
   margin: 0;
   -webkit-appearance: none;
   width: 100%;
@@ -176,39 +175,6 @@ $cursor-color: orange;
   width: 100%;
   height:100%;
   padding: 0;
-  /*input {
-    position:relative;
-    top:0;
-    padding: 0;
-    width:100%;
-    margin: 20px 0 0 0;
-  }*/
-  /*-moz-animation-timing-function: ;&::before {
-    position: absolute;
-    top: 1vh;
-    content: ' ';
-    width: 100%;
-    padding: 0.25vh 0;
-    box-sizing:border-box;
-    border: 1vh solid $switch-bg;
-    border-radius: 1vh;
-    background-color: darken($switch-bg, 50);
-  }*/
-/*
-  &__indicator {
-    border-radius: 2px;
-    height:4.5vh;
-    width: 2vh;
-    background-color: $cursor-color;
-    box-sizing:border-box;
-    border-top: 1vh solid lighten($cursor-color, 30);
-    border-left: 1vh solid lighten($cursor-color, 10);
-    border-bottom: 1vh solid darken($cursor-color, 10);
-    border-right: 1vh solid $cursor-color;
-    position: absolute;
-    left: -1vh;
-    box-shadow: 0 1vh 0 0 #444444;
-  }*/
   .labels {
     display: flex;
     resize: horizontal;

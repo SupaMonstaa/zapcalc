@@ -54,6 +54,7 @@ export default class LevelSelect extends Vue {
 
 <style lang="scss" scoped>
   /deep/ img {
+    margin-top: 8px;
     width: 25%;
     display:inline-block;
   }

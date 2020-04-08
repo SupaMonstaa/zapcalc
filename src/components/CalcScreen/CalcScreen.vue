@@ -1,7 +1,7 @@
 <template>
   <div class="calc-screen">
     <canvas id="screen-canvas"
-    width="500" height="120" :aria-label="ariaLabel">
+    width="500" height="140" :aria-label="ariaLabel">
     </canvas>
   </div>
 </template>
@@ -100,17 +100,17 @@ export default class CalcScreen extends Vue {
 
   drawTotalScore(big: boolean): void {
     if (this.totalScore >= 0) {
+      this.animTimeout = setTimeout(() => this.drawTotalScore(!big), 400);
       const score = `${this.totalScore}`;
       const lg = 12 * score.length;
       this.clearScreen();
-      this.drawText(score, 39 - 0.5 * lg, 2, true, '#000000');
+      this.drawText(score, 39 - 0.5 * lg, 4, true, '#000000');
       if (big) {
-        this.drawImage(this.starImage19, 42 + 0.5 * lg, 2);
+        this.drawImage(this.starImage19, 42 + 0.5 * lg, 4);
       } else {
-        this.drawImage(this.starImage9, 45 + 0.5 * lg, 6);
+        this.drawImage(this.starImage9, 45 + 0.5 * lg, 8);
       }
       this.pixelate();
-      this.animTimeout = setTimeout(() => this.drawTotalScore(!big), 400);
     }
   }
 
@@ -123,14 +123,19 @@ export default class CalcScreen extends Vue {
 
   drawGameTimeLeft() {
     if (this.gameTimeLeft >= 0) {
-      this.drawText(`${this.gameTimeLeft}`, 82, 2, false, '#000000');
-      this.pixelate();
+      this.ctx.fillStyle = '#ff8080';
+      const coef = this.gameTimeLeft / 180;
+      const max = this.canvas.width - 20;
+      const w = 5 * Math.ceil(coef * max * 0.2);
+      this.ctx.fillRect(10 + max - w, 10, w, 5);
+      this.ctx.fillStyle = '#000000';
+      this.drawText(`${this.gameTimeLeft}`, 82, 4, false, '#000000');
     }
   }
 
   drawOperation() {
     const X = 11;
-    const Y = 2;
+    const Y = 4;
     // const txtH = 103.2;
     // this.ctx.font = `${txtH}px zapmaxi`;
     // this.ctx.fillStyle = this.color;
@@ -143,7 +148,7 @@ export default class CalcScreen extends Vue {
     textIndex += 13;
     this.drawText(`${this.digit2}`, textIndex, Y, true, this.color);
     for (let i = 0; i < this.stars; i += 1) {
-      this.drawImage(this.starImage7, 2, 16 - i * 7);
+      this.drawImage(this.starImage7, 2, 19 - i * 8);
     }
   }
 
@@ -197,9 +202,9 @@ export default class CalcScreen extends Vue {
   .calc-screen {
     font-family: "zapmaxi";
     position:relative;
-    margin: 1vh 2vh 2vh;
+    margin: 1% 4% 3%;
     background: $screen-bg;
-    border-radius: 1vh;
+    border-radius: 10px;
     box-sizing:border-box;
     box-shadow: 1px 3px 0 0 darken($screen-bg, 30) inset;
     text-shadow: 1px 4px 0px darken($screen-bg, 30);
