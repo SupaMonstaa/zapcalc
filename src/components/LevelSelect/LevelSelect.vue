@@ -1,6 +1,7 @@
 <template>
   <div>
-    <SwitchInput @change="onSwitchChange" :switchData="switchData" :initValue="initValue">
+    <SwitchInput @change="onSwitchChange"
+    :switchData="switchData" :initValue="initValue.toString()">
       <template v-slot:label0>
         <IconBase iconName="niveau1" iconColor="#FFFFFF"><Barbell1/></IconBase>
       </template>
@@ -32,8 +33,8 @@ import Barbell3 from '@/components/Icons/Barbell3.vue';
   },
 })
 export default class LevelSelect extends Vue {
-  @Prop()
-  public initValue!: string;
+  @Prop({ type: Number })
+  public initValue!: number;
 
   private level = 1;
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SwitchInput @change="onChange" :switchData="switchData" :initValue="initValue"/>
+    <SwitchInput @change="onChange" :switchData="switchData" :initValue="initValue.toString()"/>
   </div>
 </template>
 
