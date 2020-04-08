@@ -22,11 +22,11 @@ import './ZapCalcPage.scss';
   },
 })
 export default class ZapCalcPage extends Vue {
-  private level = 2;
+  private level!: number;
 
   private showResult = false;
 
-  private operationKind: OperationKind = OperationKind.multiplication;
+  private operationKind!: OperationKind;
 
   private operation!: Operation;
 
@@ -47,8 +47,10 @@ export default class ZapCalcPage extends Vue {
   private gameTimeout!: number;
 
   created() {
+    this.level = localStorage.level ? localStorage.level : 2;
+    this.operationKind = localStorage.operationKind
+      ? localStorage.operationKind : OperationKind.multiplication;
     this.currentOperation = this.operationFactory();
-    console.log('created');
   }
 
   onKeyboardValue(value: number): void {
@@ -110,10 +112,12 @@ export default class ZapCalcPage extends Vue {
   }
 
   onLevelChange(level: number) {
+    localStorage.level = level;
     this.level = level;
   }
 
   onOperationChange(operationKind: OperationKind) {
+    localStorage.operationKind = operationKind;
     this.operationKind = operationKind;
   }
 

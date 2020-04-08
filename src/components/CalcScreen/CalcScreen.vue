@@ -73,10 +73,6 @@ export default class CalcScreen extends Vue {
     this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
     this.ctx.imageSmoothingEnabled = false;
     this.renderScreen();
-    /* this.$nextTick(() => {
-      console.log('nextTick');
-      this.pixelate();
-    }); */
   }
 
   @Watch('gameTimeLeft')
@@ -135,7 +131,6 @@ export default class CalcScreen extends Vue {
   drawOperation() {
     const X = 11;
     const Y = 2;
-    console.log('operationChanged');
     // const txtH = 103.2;
     // this.ctx.font = `${txtH}px zapmaxi`;
     // this.ctx.fillStyle = this.color;

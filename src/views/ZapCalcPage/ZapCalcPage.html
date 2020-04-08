@@ -1,8 +1,8 @@
 <div class="zap-calc">
   <header>
     <menu>
-      <LevelSelect initValue="2" class="level-select" @change="onLevelChange"></LevelSelect>
-      <OperationSelect initValue="multiplication" class="operation-select" @change="onOperationChange"></OperationSelect>
+      <LevelSelect :initValue="level ? level.toString() : ''" class="level-select" @change="onLevelChange"></LevelSelect>
+      <OperationSelect :initValue="operationKind" class="operation-select" @change="onOperationChange"></OperationSelect>
       <button class="start-game" @click="startGame">Start</button>
     </menu>
   </header>

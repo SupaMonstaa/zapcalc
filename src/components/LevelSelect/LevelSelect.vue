@@ -54,7 +54,6 @@ export default class LevelSelect extends Vue {
 
   onSwitchChange(v: string) {
     this.level = parseInt(v, 0);
-    console.log('onSwitchChange', v);
     this.$emit('change', this.level);
   }
 }

@@ -19,14 +19,7 @@ export default class KeyboardKey extends Vue {
     return `${this.correct ? 'correct' : 'wrong'}${this.showResult ? ' show' : ''}`;
   }
 
-  created() {
-    console.log(this.correct);
-  }
-
   onClick(evt: Event) {
-    if (this.correct) {
-      console.log('correct !');
-    }
     const button = evt.target as HTMLButtonElement;
     button.classList.add('active');
     setTimeout(() => {

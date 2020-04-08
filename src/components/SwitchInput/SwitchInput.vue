@@ -1,6 +1,6 @@
 <template>
   <div class="switch">
-    <input @change="onChange" v-model="cursorIndex" type="range" :id="id" :name="id"
+    <input ref="input" @change="onChange" v-model="cursorIndex" type="range" :id="id" :name="id"
          min="0" :max="switchData.length - 1" />
     <div class="labels">
       <div v-for="(input, index) in switchData"
@@ -40,7 +40,6 @@ export default class SwitchInput extends Vue {
     this.id = `switch-input-${SwitchInput.componentId}`;
     // adjust cursor width to the number of inputs
     let i: number;
-    console.log(this.initValue, this.switchData);
     for (i = 0; i < this.switchData.length; i += 1) {
       if (this.initValue === this.switchData[i].value) {
         break;
@@ -50,6 +49,9 @@ export default class SwitchInput extends Vue {
   }
 
   mounted() {
+    const input = this.$refs.input as HTMLElement;
+    const percent = 100 - 100 / this.switchData.length;
+    input.style.width = `calc(${percent}% + 4vh)`;
     this.moveIndicator(this.cursorIndex);
   }
 
@@ -107,7 +109,7 @@ $cursor-color: orange;
 }
 
 @mixin input-type-range {
-  padding-top: 0.5vh;
+  padding: 1vh 0;
   margin: 0;
   -webkit-appearance: none;
   width: 100%;

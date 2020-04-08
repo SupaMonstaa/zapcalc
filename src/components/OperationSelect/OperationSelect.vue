@@ -40,7 +40,6 @@ export default class OperationSelect extends Vue {
 
   onChange(v: string): void {
     this.operationKind = v as OperationKind;
-    console.log('OperationSelect', v);
     this.$emit('change', this.operationKind);
   }
 }
