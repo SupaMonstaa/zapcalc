@@ -215,21 +215,12 @@ $cursor-color: orange;
     align-items: center;
     .label {
       display: auto;
-      position:relative;
-      top: 40%;
       z-index:1;
       width: 100%;
-      //height: 50%;
       box-sizing: border-box;
-      // padding: 50% 0 0 0;
       text-align: center;
-      cursor: pointer;
-      transition: color 200ms ease-out;
       line-height:1;
       color: #ffffff;
-      & svg {
-        max-width: 60px;
-      }
     }
   }
 

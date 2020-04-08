@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <div class="sel">
     <SwitchInput @change="onSwitchChange"
     :switchData="switchData" :initValue="initValue.toString()">
       <template v-slot:label0>
-        <IconBase iconName="niveau1" iconColor="#FFFFFF"><Barbell1/></IconBase>
+        <img src="@/assets/star.png"/>
       </template>
       <template v-slot:label1>
-        <IconBase iconName="niveau2" iconColor="#FFFFFF"><Barbell2/></IconBase>
+        <img src="@/assets/star.png"/><img src="@/assets/star.png"/>
       </template>
       <template v-slot:label2>
-        <IconBase iconName="niveau3" iconColor="#FFFFFF"><Barbell3/></IconBase>
+        <img src="@/assets/star.png"/><img src="@/assets/star.png"/><img src="@/assets/star.png"/>
       </template>
     </SwitchInput>
   </div>
@@ -18,18 +18,10 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import SwitchInput from '@/components/SwitchInput';
-import IconBase from '@/components/Icons/IconBase.vue';
-import Barbell1 from '@/components/Icons/Barbell1.vue';
-import Barbell2 from '@/components/Icons/Barbell2.vue';
-import Barbell3 from '@/components/Icons/Barbell3.vue';
 
 @Component({
   components: {
     SwitchInput,
-    IconBase,
-    Barbell1,
-    Barbell2,
-    Barbell3,
   },
 })
 export default class LevelSelect extends Vue {
@@ -59,3 +51,10 @@ export default class LevelSelect extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  /deep/ img {
+    width: 25%;
+    display:inline-block;
+  }
+</style>

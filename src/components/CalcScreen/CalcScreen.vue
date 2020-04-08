@@ -195,6 +195,7 @@ export default class CalcScreen extends Vue {
 <style scoped lang="scss">
   $screen-bg: #ccc;
   .calc-screen {
+    font-family: "zapmaxi";
     position:relative;
     margin: 1vh 2vh 2vh;
     background: $screen-bg;
