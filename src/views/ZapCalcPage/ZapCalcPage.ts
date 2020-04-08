@@ -47,7 +47,7 @@ export default class ZapCalcPage extends Vue {
   private gameTimeout!: number;
 
   created() {
-    this.level = localStorage.level ? parseInt(localStorage.level) : 2;
+    this.level = localStorage.level ? parseInt(localStorage.level, 0) : 2;
     this.operationKind = localStorage.operationKind
       ? localStorage.operationKind : OperationKind.multiplication;
     this.currentOperation = this.operationFactory();
