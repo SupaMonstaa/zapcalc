@@ -55,6 +55,9 @@ export default class CalcScreen extends Vue {
   @Prop({ type: String })
   private ariaLabel!: string;
 
+  @Prop({ type: Number })
+  private gameDuration!: number;
+
   created() {
     /* this.starImage9.addEventListener('load', () => {
       console.log('image loaded');
@@ -79,6 +82,7 @@ export default class CalcScreen extends Vue {
   @Watch('score')
   @Watch('ariaLabel')
   @Watch('totalScore')
+  @Watch('stars')
   renderScreen() {
     this.clearScreen();
     if (this.totalScore >= 0) {
@@ -104,7 +108,7 @@ export default class CalcScreen extends Vue {
       const score = `${this.totalScore}`;
       const lg = 12 * score.length;
       this.clearScreen();
-      this.drawText(score, 39 - 0.5 * lg, 4, true, '#000000');
+      this.drawText(score, 39 - 0.5 * lg, 5, true, '#000000');
       if (big) {
         this.drawImage(this.starImage19, 42 + 0.5 * lg, 4);
       } else {
@@ -124,18 +128,19 @@ export default class CalcScreen extends Vue {
   drawGameTimeLeft() {
     if (this.gameTimeLeft >= 0) {
       this.ctx.fillStyle = '#ff8080';
-      const coef = this.gameTimeLeft / 180;
+      const coef = this.gameTimeLeft / this.gameDuration;
       const max = this.canvas.width - 20;
       const w = 5 * Math.ceil(coef * max * 0.2);
       this.ctx.fillRect(10 + max - w, 10, w, 5);
       this.ctx.fillStyle = '#000000';
-      this.drawText(`${this.gameTimeLeft}`, 82, 4, false, '#000000');
+      const zeros = `${this.gameTimeLeft < 100 ? '0' : ''}${this.gameTimeLeft < 10 ? '0' : ''}`;
+      this.drawText(`${zeros}${this.gameTimeLeft}`, 82, 4, false, '#000000');
     }
   }
 
   drawOperation() {
     const X = 11;
-    const Y = 4;
+    const Y = 5;
     // const txtH = 103.2;
     // this.ctx.font = `${txtH}px zapmaxi`;
     // this.ctx.fillStyle = this.color;
@@ -163,15 +168,14 @@ export default class CalcScreen extends Vue {
   private drawText(text: string, x: number, y: number, big: boolean, color: string): void {
     // const txtH = 50; // h for nano
     const txtH = big ? 103.2 : 25;
-    const incY = big ? 5 : 2;
+    const incY = big ? 83 : 27;
     this.ctx.font = `${txtH}px ${big ? 'zapmaxi' : 'zapmini'}`;
     // const w = this.pixelW * (text.length * (big ? 12 : 6));
     // const h = this.pixelW * (big ? 15 : 5);
     // this.ctx.fillStyle = '#eeeeee';
     // this.ctx.fillRect(this.x(x), this.y(y) + incY - 5, w, h);
     this.ctx.fillStyle = color;
-    this.ctx.textAlign = 'start';
-    this.ctx.textBaseline = 'top';
+    // this.ctx.textBaseline = 'top'; // bogus on FF, so disabled and rather use the incY
     this.ctx.fillText(`${text}`, this.x(x), this.y(y) + incY);
   }
 

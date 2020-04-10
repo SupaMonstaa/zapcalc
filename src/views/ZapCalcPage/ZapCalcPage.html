@@ -6,8 +6,8 @@
       <button class="start-game" @click="startGame">Start</button>
     </menu>
   </header>
-  <div class="star"><img src="/icons/star.png" alt=""></div>
   <CalcScreen
+  :gameDuration="gameDuration"
   :totalScore="totalScore"
   :digit1="operation.digit1"
   :digit2="operation.digit2"

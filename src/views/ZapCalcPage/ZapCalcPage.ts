@@ -47,6 +47,7 @@ export default class ZapCalcPage extends Vue {
   private gameTimeout!: number;
 
   created() {
+    this.initGame();
     this.level = localStorage.level ? parseInt(localStorage.level, 0) : 2;
     this.operationKind = localStorage.operationKind
       ? localStorage.operationKind : OperationKind.multiplication;
@@ -54,6 +55,12 @@ export default class ZapCalcPage extends Vue {
   }
 
   onKeyboardValue(value: number): void {
+    if (this.gameStarted && this.gameTimeLeft === 0) {
+      // game is ended
+      this.initGame();
+      return;
+    }
+
     if (this.operation.result === value) {
       // correct answer
       this.nextOperation = true;
@@ -68,6 +75,7 @@ export default class ZapCalcPage extends Vue {
       }, 1000);
       if (!this.nextOperation) {
         this.showResult = true;
+        this.operation.stars = 0;
       } else {
         this.nextOperation = false;
       }
@@ -85,6 +93,13 @@ export default class ZapCalcPage extends Vue {
   private set currentOperation(v: Operation) {
     this.operation = v;
     this.ariaLabel = `${this.operation.digit1} ${this.operation.sign} ${this.operation.digit2}`;
+  }
+
+  private initGame() {
+    this.score = -1;
+    this.totalScore = -1;
+    this.gameTimeLeft = -1;
+    this.gameStarted = false;
   }
 
   private startGame(): void {
@@ -106,7 +121,6 @@ export default class ZapCalcPage extends Vue {
   }
 
   private endGame() {
-    this.gameStarted = false;
     // send totalScore to screen
     this.totalScore = this.score;
   }

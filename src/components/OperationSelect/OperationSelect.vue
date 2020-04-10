@@ -49,6 +49,7 @@ export default class OperationSelect extends Vue {
   /* change style of inner elements */
   /deep/ .label span {
     font-size:160%;
+    font-weight: bold;
   }
   /deep/ .label:last-of-type span {
     font-size:80%;

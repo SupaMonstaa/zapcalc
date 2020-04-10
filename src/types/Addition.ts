@@ -11,7 +11,8 @@ export default class Addition extends Operation {
     this.stars = 1;
     if (this.digit1 >= 20 && this.digit2 >= 20) {
       this.stars = (this.digit1 % 10 === 0 || this.digit2 % 10 === 0) ? 2 : 3;
-    } else if (this.digit1 >= 10 && this.digit2 >= 10) {
+    } else if ((this.digit1 >= 10 && this.digit2 >= 10)
+               || this.digit1 >= 20 || this.digit2 >= 20) {
       this.stars = (this.digit1 % 10 === 0 || this.digit2 % 10 === 0) ? 1 : 2;
     } else {
       this.stars = 1;
