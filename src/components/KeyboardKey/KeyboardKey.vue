@@ -33,7 +33,7 @@ export default class KeyboardKey extends Vue {
 <style scoped lang="scss">
 @import '@/scss/mixins.scss';
 
-$button-color: rgb(48, 138, 241);
+$button-color: rgb(35, 111, 197);
 $button-correct: rgb(102, 187, 69);
 $button-wrong: rgb(230, 71, 71);
 button {

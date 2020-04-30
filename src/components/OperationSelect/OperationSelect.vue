@@ -33,7 +33,11 @@ export default class OperationSelect extends Vue {
       value: 'multiplication',
     },
     {
-      label: '+ -<br/>× ÷',
+      label: '÷',
+      value: 'division',
+    },
+    {
+      label: '+ - × ÷',
       value: 'mix',
     },
   ];
@@ -48,11 +52,16 @@ export default class OperationSelect extends Vue {
 <style lang="scss" scoped>
   /* change style of inner elements */
   /deep/ .label span {
-    font-size:160%;
+    display: block;
+    margin-top: 1px;
+    font-size: 160%;
     font-weight: bold;
   }
   /deep/ .label:last-of-type span {
-    font-size:80%;
-    line-height: 0.7;
+    display: block;
+    text-align: center;
+    font-size: 85%;
+    width: 28px;
+    padding: 1% 16% 0;
   }
 </style>

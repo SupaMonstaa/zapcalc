@@ -3,13 +3,16 @@
     <SwitchInput @change="onSwitchChange"
     :switchData="switchData" :initValue="initValue.toString()">
       <template v-slot:label0>
-        <img src="@/assets/star.png"/>
+        <img src="@/assets/images/star.png"/>
       </template>
       <template v-slot:label1>
-        <img src="@/assets/star.png"/><img src="@/assets/star.png"/>
+        <img src="@/assets/images/star.png"/>
+        <img src="@/assets/images/star.png"/>
       </template>
       <template v-slot:label2>
-        <img src="@/assets/star.png"/><img src="@/assets/star.png"/><img src="@/assets/star.png"/>
+        <img src="@/assets/images/star.png"/>
+        <img src="@/assets/images/star.png"/>
+        <img src="@/assets/images/star.png"/>
       </template>
     </SwitchInput>
   </div>

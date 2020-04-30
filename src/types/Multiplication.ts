@@ -1,21 +1,28 @@
 import Operation from './Operation';
 
 export default class Multiplication extends Operation {
-  public sign = '×';
+  public static label = '×';
+
+  public sign = Multiplication.label;
 
   public color = '#303080';
 
-  protected generateDigits(level: number): void {
-    this.digit1 = Operation.rand(level, 1 + 3 * level);
-    this.digit2 = Operation.rand(2, 10);
-    this.stars = 1;
-    if (this.digit1 >= 7 && this.digit2 >= 7) {
-      this.stars = 3;
-    } else if (this.digit1 >= 4 && this.digit2 >= 5) {
-      this.stars = 2;
+  public generateDigits(level: number): void {
+    this.digit1 = Operation.rand(level, 30);
+    this.digit2 = Operation.rand(2, 30);
+  }
+
+  public get stars(): number {
+    let s = 1;
+    if (this.digit1 >= 10 || this.digit2 >= 10) {
+      // Level 3 : < 9 or not a multiple of 10
+      s = this.digit1 % 10 && this.digit1 % 10 ? 3 : 2;
+    } else if (this.digit1 >= 5 && this.digit2 >= 5) {
+      s = 2;
     } else {
-      this.stars = 1;
+      s = 1;
     }
+    return s;
   }
 
   public get result(): number {

@@ -1,13 +1,10 @@
-@import '@/scss/mixins.scss';
-
 $calc-bg: #555555;
 
 .zap-calc {
-  height: 100%;
   margin: 0 auto;
   border-radius: 1vh;
   max-width:80vh;
-  padding:2%;
+  padding:2vh;
   box-sizing:border-box;
   background-color: $calc-bg;
   box-shadow: 0 1vh 0 0 lighten($calc-bg, 30) inset,// top
@@ -38,8 +35,8 @@ $calc-bg: #555555;
   }
 
   header {
-    height: 11%;
-    padding-bottom: 4%;
+    height: 9vh;
+    padding-bottom: 3vh;
     menu {
       margin: 0;
       padding: 0;
@@ -52,7 +49,7 @@ $calc-bg: #555555;
         box-sizing:border-box;
         float:left;
         width: 40%;
-        height:95%;
+        height: 95%;
         padding: 2% 1vh 0 1vh;
       }
       .operation-select {
@@ -63,21 +60,15 @@ $calc-bg: #555555;
         height:95%;
         padding: 2% 1vh 0 1vh;
       }
-      button.start-game {
-        @include zap-button(#ee3322);
-        margin: 1vh;
-        float:left;
-        width: 20%;
-      }
     }
   }
 
   .calc-screen {
-    margin-bottom: 2%;
-    height: 18%;
+    margin-bottom: 3%;
+    height: 17vh;
   }
 
   .keyboard-item {
-    height: 65%;
+    height: 63vh;
   }
 }

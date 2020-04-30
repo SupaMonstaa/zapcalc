@@ -75,7 +75,7 @@ export default function pixelate(src: any, dst: any, opt: any) {
                 dstPixels[i + 0] = red;
                 dstPixels[i + 1] = green;
                 dstPixels[i + 2] = blue;
-                dstPixels[i + 3] = Math.round(0.7 * alpha);
+                dstPixels[i + 3] = Math.round(0.6 * alpha);
               }
             }
           }

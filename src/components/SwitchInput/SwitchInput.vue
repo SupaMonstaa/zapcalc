@@ -98,7 +98,7 @@ $cursor-color: orange;
   content: ' ';
   width: 100%;
   height: 3px;
-  padding: 1% 0;
+  padding: 2px 0;
   box-sizing:border-box;
   border: 8px solid $switch-bg;
   border-radius: 10px;
@@ -108,7 +108,7 @@ $cursor-color: orange;
 }
 
 @mixin input-type-range {
-  padding: 4% 0 2% 0;
+  padding: 4% 0 1% 0;
   margin: 0;
   -webkit-appearance: none;
   width: 100%;

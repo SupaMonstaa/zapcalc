@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import ZapCalcPage from './views/ZapCalcPage';
+import ZapCalcPage from './components/ZapCalcPage';
 import './App.scss';
 
 @Component({
