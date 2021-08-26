@@ -1,3 +1,3 @@
-import LevelSelect from './LevelSelect.vue';
+import LevelSelect from './LevelSelect.vue'
 
-export default LevelSelect;
+export default LevelSelect

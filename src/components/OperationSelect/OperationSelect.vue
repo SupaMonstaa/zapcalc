@@ -5,46 +5,51 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-import SwitchInput from '@/components/SwitchInput';
-import OperationKind from '@/types/OperationKind';
-@Component({
+import { Options, Vue } from 'vue-class-component'
+import SwitchInput from '@/components/SwitchInput'
+import OperationKind from '@/types/OperationKind'
+@Options({
   components: {
-    SwitchInput,
+    SwitchInput
   },
+  props: {
+    initValue!: String
+  },
+  data () {
+    return {
+      switchData: [
+        {
+          label: '+',
+          value: 'addition'
+        },
+        {
+          label: '-',
+          value: 'substraction'
+        },
+        {
+          label: '×',
+          value: 'multiplication'
+        },
+        {
+          label: '÷',
+          value: 'division'
+        },
+        {
+          label: '+ - × ÷',
+          value: 'mix'
+        }
+      ]
+    }
+  }
 })
 export default class OperationSelect extends Vue {
-  @Prop()
   public initValue!: string;
 
   private operationKind!: OperationKind;
 
-  private switchData = [
-    {
-      label: '+',
-      value: 'addition',
-    },
-    {
-      label: '-',
-      value: 'substraction',
-    },
-    {
-      label: '×',
-      value: 'multiplication',
-    },
-    {
-      label: '÷',
-      value: 'division',
-    },
-    {
-      label: '+ - × ÷',
-      value: 'mix',
-    },
-  ];
-
-  onChange(v: string): void {
-    this.operationKind = v as OperationKind;
-    this.$emit('change', this.operationKind);
+  onChange (v: string): void {
+    this.operationKind = v as OperationKind
+    this.$emit('change', this.operationKind)
   }
 }
 </script>

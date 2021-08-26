@@ -1,4 +1,4 @@
-import Operation from './Operation';
+import Operation from './Operation'
 
 export default class Addition extends Operation {
   public static label = '+';
@@ -7,31 +7,32 @@ export default class Addition extends Operation {
 
   public color = '#308030';
 
-  protected generateDigits(): void {
+  protected generateDigits (): void {
     // 1 - 49
-    this.digit1 = Operation.rand(1, 50);
-    this.digit2 = Operation.rand(1, 100 - this.digit1);
+    this.digit1 = Operation.rand(1, 50)
+    this.digit2 = Operation.rand(1, 100 - this.digit1)
   }
 
-  public get stars(): number {
-    let s = 1;
-    if ((this.digit1 >= 30 && this.digit2 >= 20)
-        || (this.digit1 >= 10 && this.digit2 >= 10
-            && (this.digit1 % 10) + (this.digit2 % 10) >= 10)) {
+  public get stars (): number {
+    let s = 1
+    if ((this.digit1 >= 30 && this.digit2 >= 20) ||
+        (this.digit1 >= 10 && this.digit2 >= 10 &&
+            (this.digit1 % 10) + (this.digit2 % 10) >= 10)) {
       // grosse opération ou une retenue
-      s = 3;
+      s = 3
     } else if (this.digit1 >= 20 && this.digit2 >= 20) {
-      s = (this.digit1 % 10 === 0 || this.digit2 % 10 === 0) ? 2 : 3;
-    } else if ((this.digit1 >= 10 && this.digit2 >= 10)
-               || this.digit1 >= 20 || this.digit2 >= 20) {
-      s = (this.digit1 % 10 === 0 || this.digit2 % 10 === 0) ? 1 : 2;
+      s = (this.digit1 % 10 === 0 || this.digit2 % 10 === 0) ? 2 : 3
+    } else if (this.digit1 >= 2 && this.digit2 >= 2 &&
+                ((this.digit1 >= 10 && this.digit2 >= 10) ||
+                 this.digit1 >= 20 || this.digit2 >= 20)) {
+      s = (this.digit1 % 10 === 0 || this.digit2 % 10 === 0) ? 1 : 2
     } else {
-      s = 1;
+      s = 1
     }
-    return s;
+    return s
   }
 
-  public get result(): number {
-    return this.digit1 + this.digit2;
+  public get result (): number {
+    return this.digit1 + this.digit2
   }
 }

@@ -14,14 +14,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Options, Vue } from 'vue-class-component'
 
-@Component
+@Options({
+  props: {
+    initValue: String,
+    switchData: Object
+  },
+  emits: ['change']
+})
 export default class SwitchInput extends Vue {
-  @Prop({ type: String })
   public initValue!: string;
 
-  @Prop()
   // eslint-disable-next-line
   private switchData!: any;
 
@@ -33,44 +37,43 @@ export default class SwitchInput extends Vue {
 
   private cursorIndex!: number;
 
-  created() {
-    this.value = `${this.initValue}`;
+  created (): void {
+    // this.value = `${this.initValue}`
     // increment id to create unique component Id
-    SwitchInput.componentId += 1;
-    this.id = `switch-input-${SwitchInput.componentId}`;
+    SwitchInput.componentId += 1
+    this.id = `switch-input-${SwitchInput.componentId}`
     // adjust cursor width to the number of inputs
-    let i: number;
-    for (i = 0; i < this.switchData.length; i += 1) {
+    this.cursorIndex = 0
+    for (let i = 0; i < this.switchData.length; i += 1) {
       if (this.initValue === this.switchData[i].value) {
-        break;
+        this.cursorIndex = i
       }
     }
-    this.cursorIndex = i;
   }
 
-  mounted() {
-    const input = this.$refs.input as HTMLElement;
-    const percent = 100 - 100 / this.switchData.length;
-    input.style.width = `calc(${percent}% + 4vh)`;
-    this.moveIndicator(this.cursorIndex);
+  mounted (): void {
+    const input = this.$refs.input as HTMLElement
+    const percent = 100 - 100 / this.switchData.length
+    input.style.width = `calc(${percent}% + 4vh)`
+    this.moveIndicator(this.cursorIndex)
   }
 
-  onChange(): void {
+  onChange (): void {
     /* const input = evt.target as HTMLInputElement;
     const inputIndex = parseInt(input.id.replace(`${this.id}-`, ''), 0); */
-    this.moveIndicator(this.cursorIndex);
+    this.moveIndicator(this.cursorIndex)
   }
 
   /**
    * move the indicator to the label of the given input
    */
-  moveIndicator(cursorIndex: number): void {
-    this.cursorIndex = cursorIndex;
+  moveIndicator (cursorIndex: number): void {
+    this.cursorIndex = cursorIndex
     // const indicator = this.$refs.indicator as HTMLElement;
     // const percentX = Math.round(1000 * (cursorIndex / this.switchData.length)) / 10;
     // console.log('percent', percentX);
     // indicator.style.transform = `translate3d(${percentX},0,0)`;
-    this.$emit('change', this.switchData[cursorIndex].value);
+    this.$emit('change', this.switchData[cursorIndex].value)
   }
 }
 </script>
@@ -141,20 +144,6 @@ $cursor-color: orange;
     border-width: $thumb-width 0;
     border-color: transparent;
     background: transparent;*/
-  }
-
-  &::-ms-fill-lower {
-    /*@include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
-    border: $track-border-width solid $track-border-color;
-    border-radius: $track-radius * 2;
-    background: $track-color;*/
-  }
-
-  &::-ms-fill-upper {
-    /*@include shadow($track-shadow-size, $track-shadow-blur, $track-shadow-color);
-    border: $track-border-width solid $track-border-color;
-    border-radius: $track-radius * 2;
-    background: $track-color;*/
   }
 
   &::-ms-thumb {

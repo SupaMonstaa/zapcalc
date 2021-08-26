@@ -1,3 +1,3 @@
-import KeyboardKey from './KeyboardKey.vue';
+import KeyboardKey from './KeyboardKey.vue'
 
-export default KeyboardKey;
+export default KeyboardKey

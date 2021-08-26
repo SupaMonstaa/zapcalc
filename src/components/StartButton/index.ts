@@ -1,3 +1,3 @@
-import StartButton from './StartButton.vue';
+import StartButton from './StartButton.vue'
 
-export default StartButton;
+export default StartButton

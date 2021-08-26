@@ -1,6 +1,6 @@
 <template>
   <div class="sel">
-    <SwitchInput @change="onSwitchChange"
+    <SwitchInput v-on:change="onSwitchChange"
     :switchData="switchData" :initValue="initValue.toString()">
       <template v-slot:label0>
         <img src="@/assets/images/star.png"/>
@@ -19,16 +19,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-import SwitchInput from '@/components/SwitchInput';
+import { Options, Vue } from 'vue-class-component'
+import SwitchInput from '@/components/SwitchInput'
 
-@Component({
+@Options({
   components: {
-    SwitchInput,
+    SwitchInput
   },
+  props: {
+    initValue!: Number
+  },
+  emits: ['change']
 })
 export default class LevelSelect extends Vue {
-  @Prop({ type: Number })
   public initValue!: number;
 
   private level = 1;
@@ -36,21 +39,21 @@ export default class LevelSelect extends Vue {
   private switchData = [
     {
       label: '',
-      value: '1',
+      value: '1'
     },
     {
       label: '',
-      value: '2',
+      value: '2'
     },
     {
       label: '',
-      value: '3',
-    },
+      value: '3'
+    }
   ]
 
-  onSwitchChange(v: string) {
-    this.level = parseInt(v, 0);
-    this.$emit('change', this.level);
+  onSwitchChange (v: string): void {
+    this.level = parseInt(v, 0)
+    this.$emit('change', this.level)
   }
 }
 </script>

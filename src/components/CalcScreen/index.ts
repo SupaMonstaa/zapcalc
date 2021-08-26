@@ -1,3 +1,3 @@
-import CalcScreen from './CalcScreen.vue';
+import CalcScreen from './CalcScreen.vue'
 
-export default CalcScreen;
+export default CalcScreen

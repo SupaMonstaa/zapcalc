@@ -1,3 +1,3 @@
-import ZapCalcPage from './ZapCalcPage';
+import ZapCalcPage from './ZapCalcPage.vue'
 
-export default ZapCalcPage;
+export default ZapCalcPage

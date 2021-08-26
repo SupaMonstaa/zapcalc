@@ -9,5 +9,5 @@ export default function shuffle(a: Array<any>): Array<any> {
     // eslint-disable-next-line
     [a[i], a[j]] = [a[j], a[i]];
   }
-  return a;
+  return a
 }

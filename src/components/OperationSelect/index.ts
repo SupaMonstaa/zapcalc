@@ -1,3 +1,3 @@
-import OperationSelect from './OperationSelect.vue';
+import OperationSelect from './OperationSelect.vue'
 
-export default OperationSelect;
+export default OperationSelect

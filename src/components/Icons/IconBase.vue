@@ -15,18 +15,18 @@ export default {
   props: {
     iconName: {
       type: String,
-      default: 'box',
+      default: 'box'
     },
     viewbox: {
       type: String,
-      default: '0 0 280 150',
+      default: '0 0 280 150'
     },
     iconColor: {
       type: String,
-      default: 'currentColor',
-    },
-  },
-};
+      default: 'currentColor'
+    }
+  }
+}
 </script>
 
 <style scoped>

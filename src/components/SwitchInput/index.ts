@@ -1,3 +1,3 @@
-import SwitchInput from './SwitchInput.vue';
+import SwitchInput from './SwitchInput.vue'
 
-export default SwitchInput;
+export default SwitchInput

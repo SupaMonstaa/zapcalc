@@ -5,41 +5,43 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Vue, Options } from 'vue-class-component'
 
-@Component
+@Options({
+  props: {
+    gameTimeLeft: Number,
+    gameDuration: Number
+  }
+})
 export default class StartButton extends Vue {
-  @Prop({ type: Number })
   private gameTimeLeft!: number;
-
-  @Prop({ type: Number })
   private gameDuration!: number;
 
-  get seconds(): string {
-    return this.gameTimeLeft < 0 ? 'Start' : `${this.gameTimeLeft}`;
+  get seconds (): string {
+    return this.gameTimeLeft < 0 ? 'Start' : `${this.gameTimeLeft}`
   }
 
-  get backgroundImage() {
+  get backgroundImage (): {backgroundImage: string, backgroundColor?: string} {
     if (this.gameTimeLeft >= 0) {
-      const deg = Math.floor(360 * (this.gameTimeLeft / this.gameDuration));
-      const color = '#eb5648';
+      const deg = Math.floor(360 * (this.gameTimeLeft / this.gameDuration))
+      const color = '#eb5648'
       if (deg < 180) {
         return {
-          backgroundImage: `linear-gradient(${90 - deg}deg,${color} 50%,transparent 50%),linear-gradient(90deg,#fff 50%,${color} 50%)`,
-        };
+          backgroundImage: `linear-gradient(${90 - deg}deg,${color} 50%,transparent 50%),linear-gradient(90deg,#fff 50%,${color} 50%)`
+        }
       }
       return {
-        backgroundImage: `linear-gradient(${90 - deg}deg,transparent 50%,#fff 50%),linear-gradient(90deg,#fff 50%,${color} 50%)`,
-      };
+        backgroundImage: `linear-gradient(${90 - deg}deg,transparent 50%,#fff 50%),linear-gradient(90deg,#fff 50%,${color} 50%)`
+      }
     }
     return {
       backgroundImage: 'none',
-      backgroundColor: '#ffffff',
-    };
+      backgroundColor: '#ffffff'
+    }
   }
 
-  private startGame(): void {
-    this.$emit('click');
+  private startGame (): void {
+    this.$emit('click')
   }
 }
 </script>

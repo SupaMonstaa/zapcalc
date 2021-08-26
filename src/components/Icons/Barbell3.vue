@@ -13,8 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Vue } from 'vue-class-component'
 
-@Component
 export default class Barbell3 extends Vue {}
 </script>

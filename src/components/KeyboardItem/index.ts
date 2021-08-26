@@ -1,3 +1,3 @@
-import KeyboardItem from './KeyboardItem';
+import KeyboardItem from './KeyboardItem.vue'
 
-export default KeyboardItem;
+export default KeyboardItem

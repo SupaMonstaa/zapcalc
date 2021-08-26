@@ -5,14 +5,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import ZapCalcPage from './components/ZapCalcPage';
-import './App.scss';
+import { Options, Vue } from 'vue-class-component'
+import ZapCalcPage from './components/ZapCalcPage'
+import './App.scss'
 
-@Component({
+@Options({
   components: {
-    ZapCalcPage,
-  },
+    ZapCalcPage
+  }
 })
 export default class App extends Vue {}
 </script>

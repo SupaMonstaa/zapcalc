@@ -1,9 +1,0 @@
-<div class="keyboard-item">
-  <table>
-    <tr v-for="(numbers, index) in tens">
-      <td v-for="nb in numbers">
-        <KeyboardKey :showResult="showResult" :class="index % 2 ? 'odd' : 'even'" v-on:change="onKeyboardPressed" :value="nb" :correct="result === nb"></KeyboardKey>
-      </td>
-    </tr>
-  </table>
-</div>

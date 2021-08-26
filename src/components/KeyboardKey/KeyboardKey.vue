@@ -3,29 +3,30 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
-@Component
+import { Vue, Options } from 'vue-class-component'
+@Options({
+  props: {
+    value: Number,
+    correct: Boolean,
+    showResult: Boolean
+  }
+})
 export default class KeyboardKey extends Vue {
-  @Prop({ required: true })
   public value!: number;
-
-  @Prop({ required: true })
   public correct!: boolean;
-
-  @Prop({ type: Boolean })
   private showResult!: boolean;
 
-  get buttonClass() {
-    return `${this.correct ? 'correct' : 'wrong'}${this.showResult ? ' show' : ''}`;
+  get buttonClass (): string {
+    return `${this.correct ? 'correct' : 'wrong'}${this.showResult ? ' show' : ''}`
   }
 
-  onClick(evt: Event) {
-    const button = evt.target as HTMLButtonElement;
-    button.classList.add('active');
+  onClick (evt: Event): void {
+    const button = evt.target as HTMLButtonElement
+    button.classList.add('active')
     setTimeout(() => {
-      this.$emit('change', this.value);
-      button.classList.remove('active');
-    }, 200);
+      this.$emit('change', this.value)
+      button.classList.remove('active')
+    }, 200)
   }
 }
 </script>

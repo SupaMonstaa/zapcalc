@@ -6,4 +6,4 @@ enum OperationKind {
   mix = 'mix'
 }
 
-export default OperationKind;
+export default OperationKind
