@@ -4,7 +4,7 @@
       <menu>
         <OperationSelect :initValue="operationKind" class="operation-select" @change="onOperationChange"></OperationSelect>
         <LevelSelect :initValue="level ? level : 0" class="level-select" @change="onLevelChange"></LevelSelect>
-        <StartButton :gameTimeLeft="gameTimeLeft" :gameDuration="gameDuration" @click="startGame"></StartButton>
+        <StartButton :gameTimeLeft="gameTimeLeft" :gameDuration="gameDuration" v-on:click="startGame"></StartButton>
       </menu>
     </header>
     <CalcScreen v-if="typeof operationKind !== 'undefined'"

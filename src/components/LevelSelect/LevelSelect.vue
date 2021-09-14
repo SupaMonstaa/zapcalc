@@ -1,6 +1,6 @@
 <template>
   <div class="sel">
-    <SwitchInput v-on:change="onSwitchChange"
+    <SwitchInput @change="onSwitchChange"
     :switchData="switchData" :initValue="initValue.toString()">
       <template v-slot:label0>
         <img src="@/assets/images/star.png"/>

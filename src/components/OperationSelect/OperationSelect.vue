@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SwitchInput @change="onChange" :switchData="switchData" :initValue="initValue"/>
+    <SwitchInput @change="onChange" :switchData="switchData" :initValue="initValue.toString()"/>
   </div>
 </template>
 
@@ -12,6 +12,7 @@ import OperationKind from '@/types/OperationKind'
   components: {
     SwitchInput
   },
+  emits: ['change'],
   props: {
     initValue!: String
   },

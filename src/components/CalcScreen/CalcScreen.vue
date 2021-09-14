@@ -1,7 +1,7 @@
 <template>
   <div class="calc-screen">
     <canvas id="screen-canvas"
-    width="500" height="140" :aria-label="ariaLabel">
+    width="500" height="140" :aria-label="ariaLabel" v-show="loadingStarsCount == 0">
     </canvas>
   </div>
 </template>
@@ -32,20 +32,7 @@ import starImage7 from '@/assets/images/star7.png'
   }
 })
 export default class CalcScreen extends Vue {
-  private canvas!: HTMLCanvasElement
-
-  private ctx!: CanvasRenderingContext2D
-
-  private pixelW = 5
-
-  private starImage9 = new Image()
-
-  private starImage7 = new Image()
-
-  private starImage19 = new Image()
-
-  private animTimeout = 0
-
+  // props
   public gameStarted!: boolean
   public totalScore!: number
   public digit1!: number
@@ -59,14 +46,20 @@ export default class CalcScreen extends Vue {
   private operationKind!: string
   private level!: number
 
+  private canvas!: HTMLCanvasElement
+  private ctx!: CanvasRenderingContext2D
+  private pixelW = 5
+  private starImage9 = new Image()
+  private starImage7 = new Image()
+  private starImage19 = new Image()
+  private animTimeout = 0
+  private loadingStarsCount = 3
+
   created ():void {
-    /* this.starImage9.addEventListener('load', () => {
-      console.log('starImage9 image loaded')
+    // ensure images are loaded
+    [this.starImage7, this.starImage9, this.starImage19].forEach(() => {
+      this.loadingStarsCount -= 1
     })
-    this.starImage9.addEventListener('error', (e) => {
-      console.log('starImage9', e)
-    }) */
-    // TODO : ensure images are loaded
     this.starImage7.src = starImage7
     this.starImage9.src = starImage9
     this.starImage19.src = starImage19

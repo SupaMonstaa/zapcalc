@@ -19,11 +19,26 @@ describe('KeyboardKey.vue', () => {
 })
 
 describe('Substraction', () => {
-  it('stars = 1 for simple operation', () => {
-    const op = new Substraction(1)
+  const op = new Substraction(2)
+  it('stars = 1 for simple substraction', () => {
     op.digit1 = 79
     op.digit2 = 1
     expect(op.stars).toEqual(1)
+  })
+  it('stars = 2 for substraction with deduction', () => {
+    op.digit1 = 63
+    op.digit2 = 7
+    expect(op.stars).toEqual(2)
+  })
+  it('stars = 3 for substraction with big numbers', () => {
+    op.digit1 = 63
+    op.digit2 = 22
+    expect(op.stars).toEqual(3)
+  })
+  it('stars = 3 for substraction with deduction and big numbers', () => {
+    op.digit1 = 63
+    op.digit2 = 24
+    expect(op.stars).toEqual(3)
   })
 })
 

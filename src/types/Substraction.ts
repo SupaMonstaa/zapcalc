@@ -14,14 +14,17 @@ export default class Substraction extends Operation {
 
   public get stars (): number {
     let s = 1
+    const deduction = this.digit1 % 10 < this.digit2 % 10
     if (this.digit2 > 10 &&
         this.result > 10 &&
-        this.digit1 % 10 < this.digit2 % 10) {
-      // une retenue, et résultat supérieur à 10
+        deduction) {
+      // a deduction and a big result
       s = 3
-    } else if (this.digit1 >= 20 && this.digit2 >= 20) {
-      // gros nombres
-      s = (this.digit1 % 10 === 0 || this.digit2 % 10 === 0) ? 2 : 3
+    } else if (this.digit1 >= 30 && this.digit2 < 10 && deduction) {
+      s = 2
+    } else if (this.digit1 >= 20 && this.digit2 >= 10) {
+      // big numbers
+      s = (this.digit1 % 10 === 0 || this.digit2 % 10 === 0 || this.digit2 <= 20) ? 2 : 3
     } else if (this.digit1 >= 10 && this.digit2 >= 10) {
       s = (this.digit1 % 10 === 0 || this.digit2 % 10 === 0) ? 1 : 2
     } else {
