@@ -232,7 +232,7 @@ export default class CalcScreen extends Vue {
   .calc-screen {
     font-family: "zapmaxi";
     position:relative;
-    margin: 1% 4% 3%;
+    margin: 1vh 1vh 3vh;
     background: $screen-bg;
     border-radius: 10px;
     box-sizing:border-box;
