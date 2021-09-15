@@ -1,9 +1,12 @@
 $calc-bg: #555555;
 
 .zap-calc {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width:80vh;
   margin: 0 auto;
   border-radius: 1vh;
-  max-width:80vh;
   padding:2vh;
   box-sizing:border-box;
   background-color: $calc-bg;
@@ -35,6 +38,7 @@ $calc-bg: #555555;
   }
 
   header {
+    flex: 0 0 auto;
     height: 9vh;
     padding-bottom: 3vh;
     menu {
@@ -64,11 +68,13 @@ $calc-bg: #555555;
   }
 
   .calc-screen {
+    flex: 0 0 auto;
     margin-bottom: 2vh;
     height: 17vh;
   }
 
   .keyboard-item {
-    height: 59vh;
+    height: 63%;
+    flex: 1 1 auto;
   }
 }

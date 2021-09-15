@@ -1,7 +1,5 @@
 <template>
-  <div id="app">
     <ZapCalcPage/>
-  </div>
 </template>
 
 <script lang="ts">

@@ -69,10 +69,6 @@ export default class SwitchInput extends Vue {
    */
   moveIndicator (cursorIndex: number): void {
     this.cursorIndex = cursorIndex
-    // const indicator = this.$refs.indicator as HTMLElement;
-    // const percentX = Math.round(1000 * (cursorIndex / this.switchData.length)) / 10;
-    // console.log('percent', percentX);
-    // indicator.style.transform = `translate3d(${percentX},0,0)`;
     this.$emit('change', this.switchData[cursorIndex].value)
   }
 }
